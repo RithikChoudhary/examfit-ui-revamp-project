@@ -6,6 +6,7 @@ import Features from "@/components/Features";
 import Testimonials from "@/components/Testimonials";
 import CallToAction from "@/components/CallToAction";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const Index = () => {
   return (
@@ -17,6 +18,7 @@ const Index = () => {
       <Testimonials />
       <CallToAction />
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };

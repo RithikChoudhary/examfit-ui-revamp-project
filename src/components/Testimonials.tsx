@@ -1,24 +1,30 @@
 
 import { Card, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { AnimateOnScroll } from "./ui/scroll-animation";
 
 const testimonials = [
   {
     name: "Priya Sharma",
     exam: "UPSC CSE",
     avatar: "PS",
-    quote: "ExamFit's structured approach and mock tests were key to my success in the UPSC exam. The analytics helped me focus on my weak areas."
+    quote: "ExamFit's structured approach and mock tests were key to my success in the UPSC exam. The analytics helped me focus on my weak areas.",
+    achievement: "AIR 45",
   },
   {
     name: "Rahul Mehta",
     exam: "GATE CSE",
     avatar: "RM",
-    quote: "The practice questions on ExamFit are closest to the actual GATE exam pattern. I improved my score by 45 marks in just two months!"
+    quote: "The practice questions on ExamFit are closest to the actual GATE exam pattern. I improved my score by 45 marks in just two months!",
+    achievement: "99.2 Percentile",
   },
   {
     name: "Aisha Patel",
     exam: "CAT",
     avatar: "AP",
-    quote: "The personalized study plan and time management strategies helped me score in the 99th percentile. Highly recommended for CAT aspirants!"
+    quote: "The personalized study plan and time management strategies helped me score in the 99th percentile. Highly recommended for CAT aspirants!",
+    achievement: "99.8 Percentile",
   }
 ];
 
@@ -26,49 +32,60 @@ const Testimonials = () => {
   return (
     <section id="testimonials" className="py-20 px-4 bg-gray-50">
       <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Success <span className="text-gradient">Stories</span>
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Hear from students who transformed their exam preparation journey with ExamFit.
-          </p>
-        </div>
+        <AnimateOnScroll animation="fade-up">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Success <span className="text-gradient">Stories</span>
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Hear from students who transformed their exam preparation journey with ExamFit.
+            </p>
+          </div>
+        </AnimateOnScroll>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="overflow-hidden border-none shadow-lg">
-              <CardContent className="p-6">
-                <div className="mb-6 text-4xl text-gray-300">"</div>
-                <p className="text-gray-600 mb-6">{testimonial.quote}</p>
-                <div className="flex items-center">
-                  <div className="w-10 h-10 rounded-full bg-examfit-blue flex items-center justify-center text-white font-medium">
-                    {testimonial.avatar}
+            <AnimateOnScroll key={index} animation="fade-up" delay={index * 200}>
+              <Card className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <CardContent className="p-6 relative">
+                  <div className="absolute top-4 right-4">
+                    <Badge variant="outline" className="bg-examfit-blue/10 text-examfit-blue border-examfit-blue/20 font-medium">
+                      {testimonial.achievement}
+                    </Badge>
                   </div>
-                  <div className="ml-3">
-                    <h4 className="font-semibold">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-500">{testimonial.exam}</p>
+                  <div className="mb-6 text-5xl text-examfit-blue opacity-20">"</div>
+                  <p className="text-gray-600 mb-6">{testimonial.quote}</p>
+                  <div className="flex items-center">
+                    <Avatar className="h-12 w-12 bg-gradient-to-br from-examfit-blue to-examfit-purple text-white">
+                      <AvatarFallback>{testimonial.avatar}</AvatarFallback>
+                    </Avatar>
+                    <div className="ml-4">
+                      <h4 className="font-semibold">{testimonial.name}</h4>
+                      <p className="text-sm text-gray-500">{testimonial.exam}</p>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </AnimateOnScroll>
           ))}
         </div>
 
-        <div className="mt-16 text-center">
-          <p className="text-2xl font-semibold mb-6">
-            Join thousands of successful students today!
-          </p>
-          <div className="inline-flex items-center bg-white px-4 py-3 rounded-full shadow-lg">
-            <div className="bg-examfit-blue text-white text-sm font-medium px-4 py-1 rounded-full mr-3">
-              4.8 / 5
-            </div>
-            <div className="text-amber-400 text-xl">★★★★★</div>
-            <div className="ml-3 text-gray-600">
-              Based on <span className="font-medium">2,400+</span> reviews
+        <AnimateOnScroll animation="fade-in" delay={300}>
+          <div className="mt-16 text-center">
+            <p className="text-2xl font-semibold mb-6">
+              Join thousands of successful students today!
+            </p>
+            <div className="inline-flex items-center bg-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="bg-examfit-blue text-white text-sm font-medium px-4 py-1 rounded-full mr-3">
+                4.8 / 5
+              </div>
+              <div className="text-amber-400 text-xl">★★★★★</div>
+              <div className="ml-3 text-gray-600">
+                Based on <span className="font-medium">2,400+</span> reviews
+              </div>
             </div>
           </div>
-        </div>
+        </AnimateOnScroll>
       </div>
     </section>
   );
