@@ -30,16 +30,20 @@ const ScrollToTop = () => {
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
-      {isVisible && (
+      <div 
+        className={`transition-all duration-500 ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
+      >
         <Button
           onClick={scrollToTop}
           size="icon"
-          className="rounded-full bg-examfit-blue hover:bg-examfit-darkblue shadow-lg transition-all duration-300 hover:scale-110"
+          className="rounded-full bg-examfit-blue hover:bg-examfit-darkblue shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl"
           aria-label="Scroll to top"
         >
           <ChevronUp className="h-5 w-5" />
         </Button>
-      )}
+      </div>
     </div>
   );
 };
